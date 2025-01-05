@@ -27,6 +27,10 @@ function App() {
     });
   }, []);
 
-  
+  const fetchData = async () => {
+    const querySnapshot = await getDocs(collection(database, "users"));
+    const documents = querySnapshot.docs.map(doc => ({...doc.data(), id: doc.id}));
+    setData(documents);
+  }
 }
 export default App;
